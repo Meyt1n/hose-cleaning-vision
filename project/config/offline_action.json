@@ -1,0 +1,31 @@
+{
+  "task_defaults": {
+    "infer_fps": 12.5,
+    "push_fps": 25,
+    "jpeg_quality": 88,
+    "draw_landmarks": true,
+    "overlay_scale": 1.15,
+    "video_quality_enabled": false,
+    "biz_lost_timeout": 0
+  },
+  "ws": {
+    "enabled": false,
+    "frame_width": 1600,
+    "event_cache_enabled": true
+  },
+  "post_rules": {
+    "merge_tolerance": 1,
+    "vote_window": 1,
+    "cleaning_seconds": 3,
+    "max_observation_gap_seconds": 0.12
+  },
+  "hand_evidence": {
+    "enabled": false
+  },
+  "object_model": null,
+  "local_action": {
+    "enabled": true,
+    "manifest": "../../models/local_action/manifest.json",
+    "device": "cpu"
+  }
+}

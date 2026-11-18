@@ -1,0 +1,53 @@
+{
+  "intent_id": "glove_occlusion_round18_parallel_v1",
+  "hypothesis": "expandedvisiblefieldsupervision+samefeatureprotection;onlycompareopaqueocclusioninputaugmentation35percentversusnone",
+  "data_root": "$TRAIN_ROOT/data/glove_occlusion_round18_v1",
+  "data_manifest_sha256": "fc9d27efdf7befe93a5f5a7615016eff915ff652492710001654d85d5d272ba1",
+  "dataset_metadata_sha256": "a9ccf567d7375dfa28508dd1835885a2a7ee9cc78a1d081361da81a442442d10",
+  "data_archive_path": "$TRAIN_ROOT/tmp/glove_r18_data.zip",
+  "data_archive_sha256": "a1ea0558ae9835c4025353ca5a114ab4cae443868eb6c70df05cdc6536ed91e8",
+  "mc_root": "$TRAIN_ROOT/data/mc_glove_hand5_round16_v1",
+  "mc_manifest_sha256": "3fb2f5cb19df1561146526ce4b3ab8c831e6e7ddd6273acacf91df0a0389fbad",
+  "mc_archive_path": "$TRAIN_ROOT/tmp/hand5_r16_data.zip",
+  "mc_archive_sha256": "8df2fbe7fd7dc7da5e0e406801a822de8b2e0329610b1ea88399b6705e903666",
+  "r17_data_root": "$TRAIN_ROOT/data/glove_mixed_round17_v1",
+  "r17_manifest_sha256": "4624165805d28011256d2e1ecbe24d3c7e7e9a3fc89abbf9cdd57f12cdb98745",
+  "r17_data_archive_path": "$TRAIN_ROOT/tmp/mixed_r17_data.zip",
+  "r17_data_archive_sha256": "8ffe68de0c97b68617588bae83e94d4c9a3db39171cc85aadd3845899001f1a1",
+  "parent_checkpoint": "$TRAIN_ROOT/data/pretrained_official/hand5_pretrained_tensors_only.pth",
+  "parent_checkpoint_sha256": "71353c664c7b737d917f89846ca53da8ff0eac8f36cd3c011bcfbd8f36c19303",
+  "initial_delta_checkpoint": "$TRAIN_ROOT/runs/glove_mixed_round17_parallel_v1/tail_stage/best.pth",
+  "initial_delta_sha256": "c916c6d81d749e7af47436bbbb15bccea18d92439551af071a7a6ce840256412",
+  "initial_delta_parent_step": 626,
+  "plan_file": "$TRAIN_ROOT/src/glove_occlusion_round18_v1/training_plan.json",
+  "plan_sha256": "38b80c91c56569c802ed4849fb209b85bd1458b6a0d6304bb3f030d661903e46",
+  "arms": {
+    "base": {
+      "physical_gpu": 1,
+      "trainable_parameters": 10374423
+    },
+    "occlusion": {
+      "physical_gpu": 2,
+      "trainable_parameters": 10374423
+    }
+  },
+  "steps": 3200,
+  "short_steps": 16,
+  "seed": 2026111418,
+  "warmup_steps": 200,
+  "head_lr": 1e-05,
+  "backbone_lr": 1e-06,
+  "evaluation_interval_steps": 400,
+  "checkpoint_interval_steps": 400,
+  "train_images": 6043,
+  "development_images": 522,
+  "occlusion_probability": 0.35,
+  "framework_memory_cap_bytes": 8589934592,
+  "required_growth_margin_bytes": 1610612736,
+  "atomic_checkpoint_upper_bound_bytes": 150994944,
+  "expected_added_storage_upper_bound_bytes": 671088640,
+  "source_archive_path": "$TRAIN_ROOT/tmp/glove_r18_source_v1.zip.partial",
+  "checkpoint_selection": "step0R17parentiseligible;every400stepsandfixedlast3200;minprimaryNMEwhenMCmacro/FreiPCKretention>=baseline-.01,oldAIdevPCK>=baseline-1/15,unlabelededge<=baseline+2;tie1e-6preferbase;newDLV03heldoutafterselectiononly",
+  "primary_metric": "equalmeanofoldAI15tipdevNMEandnewAI19tipdevNME;coarsevisiblepointsnotgestureaccuracy",
+  "server_only": true
+}

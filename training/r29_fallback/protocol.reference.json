@@ -1,0 +1,41 @@
+{
+  "experiment_id": "occluded_glove_detector_round29_gpu1_v1",
+  "status": "FROZEN_INTENT",
+  "task_id": "ACTION-LOCAL-11",
+  "hypothesis": "Visible overlap glove boxes and mixed replay improve hand observation; unchanged R18/R26 tests downstream effect independently of action retraining",
+  "baseline": "R19 fixed detector+R18+R26",
+  "parent_checkpoint_sha256": "55f68502811ab3251fdc98d6f0828d05bdbbcd2989bf0330f8a604960b9ee866",
+  "source_sha256": "fc896fc3f5af717ddb85aa5a4207a314d5cb0363dc818c2ad2fd68ea5b20f5a4",
+  "config_sha256": "9660240074a80f81d6b74e80628d143be05ae1bae8f46ad30c599c55d018eafb",
+  "data_split_sha256": "d821b3666d6f767b72016aca5885b98d65c2e64975c13ebabe54983ccf37aafb",
+  "model_and_trainable_layers": "FPN+RPN+box convFC+2class predictor; ResNet50 frozen parameters and eval BatchNorm",
+  "optimizer_and_resume_policy": "SGD momentum0.9 wd1e-4, fresh moments from R19 final model,32stepwarmup,cosine1e-3 to1e-5;16 fullstate/newprocess restore+624",
+  "physical_gpu_assignment": 1,
+  "planned_steps_and_storage": {
+    "steps": 640,
+    "runtime_bytes": 681574400,
+    "margin_bytes": 134217728,
+    "uploads": 36149931
+  },
+  "primary_metric_and_thresholds": {
+    "primary": "heldout_FULL05 9frames18AIvisibleboxes recall50, unmatched and recall75",
+    "gates": {
+      "heldout_recall50_drop_max": 0.05,
+      "hagrid_F1_drop_max": 0.05,
+      "old6_hand_observed_clip067_min": 19,
+      "old6_action_F1_drop_max": 0.02,
+      "old6_action_FP_increase_max": 5
+    },
+    "thresholds": {
+      "hand_score": 0.5,
+      "hand_NMS": 0.5,
+      "max_hands": 6,
+      "raw_operation": 0.5,
+      "reliable_positive": 0.8,
+      "reliable_negative": 0.2,
+      "current_hand_required": true
+    }
+  },
+  "checkpoint_selection_policy": "fixed final640 only; no best selection or threshold fitting on heldout",
+  "time_UTC": "2026-11-16T12:21:53.904324+00:00"
+}

@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.pdf binary
+models/glove_evidence/manifest.json -text -whitespace
+training/**/training_plan.json -text
+licenses/*.txt -text -whitespace

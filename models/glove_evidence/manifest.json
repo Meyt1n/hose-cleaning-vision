@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "scope": "2D hand observation only; no pose replacement in original XYZ classifier",
+  "new_optimizer_steps": 0,
+  "coco_parent": {
+    "file": "COCO_frozen_backbone.pth",
+    "sha256": "dd69338a24b8d7381807e247652bdc356325bcbaf1cd3e092e00e0a1a58706bf",
+    "bytes": 175221657
+  },
+  "detector": {
+    "file": "R19_detector_mutable.pth",
+    "sha256": "fdedbb6d3af6fc5b46c7bb5e635e7c4ca1bac1b41c7bdea7f57cbec25ce50131",
+    "bytes": 79047228
+  },
+  "pose": {
+    "file": "R18_Hand5.pth",
+    "sha256": "04d95fc83a309344957fc91aaf8b00b09d5adf918c120451b59c5e0398b0ba97",
+    "bytes": 55326430
+  }
+}

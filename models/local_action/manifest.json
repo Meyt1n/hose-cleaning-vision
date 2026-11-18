@@ -1,0 +1,22 @@
+{
+  "input_contract": "R25_native_dualROI1024_hand6x816_v1",
+  "action": {
+    "file": "R26_action.pth",
+    "sha256": "fd10a910dc2d55d9cc9f7b70d9ba9bf27c5ddde282f2c45236c48e57a86a9c7b"
+  },
+  "rgb_parent": {
+    "file": "resnet18-f37072fd.pth",
+    "sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec"
+  },
+  "glove_manifest": {
+    "file": "../glove_evidence/manifest.json",
+    "sha256": "9cf7c92592b414a43a80726d931e131cb98a3047a83cb2a9c806d159f9022537"
+  },
+  "fallback_detector": {
+    "file": "../glove_evidence/R29_fallback_mutable.pth",
+    "sha256": "5963863d20c8a1cb45c6474548b0acbb1ae6e75dd784c2908d86c67a64ee759c"
+  },
+  "positive_threshold": 0.8,
+  "negative_threshold": 0.2,
+  "semantic_scope": "cleaning_operation_not_physical_connection"
+}

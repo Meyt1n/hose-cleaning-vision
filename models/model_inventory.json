@@ -1,0 +1,60 @@
+{
+  "version": "best_verified_R29b_demo_20261117",
+  "hand_detector": "R19 primary; R29 invoked only when current R19 observes no hand",
+  "hand_keypoints": "R18 Hand5 21x2D, visibility unknown, no invented depth",
+  "action": "R26 body-independent binary macro operation head; causal window32/RF29",
+  "files": [
+    {
+      "file": "glove_evidence/COCO_frozen_backbone.pth",
+      "role": "coco_parent",
+      "bytes": 175221657,
+      "sha256": "dd69338a24b8d7381807e247652bdc356325bcbaf1cd3e092e00e0a1a58706bf"
+    },
+    {
+      "file": "glove_evidence/R19_detector_mutable.pth",
+      "role": "detector",
+      "bytes": 79047228,
+      "sha256": "fdedbb6d3af6fc5b46c7bb5e635e7c4ca1bac1b41c7bdea7f57cbec25ce50131"
+    },
+    {
+      "file": "glove_evidence/R18_Hand5.pth",
+      "role": "pose",
+      "bytes": 55326430,
+      "sha256": "04d95fc83a309344957fc91aaf8b00b09d5adf918c120451b59c5e0398b0ba97"
+    },
+    {
+      "file": "glove_evidence/R29_fallback_mutable.pth",
+      "role": "fallback_detector",
+      "bytes": 79043604,
+      "sha256": "5963863d20c8a1cb45c6474548b0acbb1ae6e75dd784c2908d86c67a64ee759c"
+    },
+    {
+      "file": "local_action/R26_action.pth",
+      "role": "action",
+      "bytes": 1508443,
+      "sha256": "fd10a910dc2d55d9cc9f7b70d9ba9bf27c5ddde282f2c45236c48e57a86a9c7b"
+    },
+    {
+      "file": "local_action/resnet18-f37072fd.pth",
+      "role": "rgb_encoder",
+      "bytes": 46830571,
+      "sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec"
+    }
+  ],
+  "thresholds": {
+    "hand": 0.5,
+    "raw_action": 0.5,
+    "reliable_positive": 0.8,
+    "reliable_negative": 0.2,
+    "max_gap_seconds": 0.12,
+    "continuous_action_seconds": 3.0
+  },
+  "scope": "macro cleaning operation, not physical connection or unique hose completion",
+  "water_air_distinction": false,
+  "source_prediction_checkpoint": "raw_fallback_round29b_gpu1_v1",
+  "not_independently_accepted_site_best": true,
+  "R30_partial_checkpoints_excluded": true,
+  "new_optimizer_steps": 0,
+  "source_weights_verified": true,
+  "archive": "inference-weights.zip"
+}

@@ -1,0 +1,91 @@
+{
+  "intent_id": "glove_hand_detector_round19_parallel_v1",
+  "seed": 2026111529,
+  "training_component": "direct_binary_gloved_hand_ROI_detection",
+  "data_root": "$TRAIN_ROOT/data/glove_hand_detection_round19_v1",
+  "data_archive_path": "$TRAIN_ROOT/tmp/hand_r19_data.zip",
+  "data_archive_sha256": "b4f05178c453170f92af65d52f4014bfd2b9070989d1c702b5d78eb537ab03c5",
+  "data_manifest_sha256": "468b01929be2997bd68d7b90080bdaccbb4c13e2094348c01fe795b0c2e410b3",
+  "data_metadata_sha256": "2f3fabaf1d7c3680454ba98aa48d125eb88689bbd3a511a78f3e46a73d05ba5e",
+  "mc_root": "$TRAIN_ROOT/data/mc_glove_hand5_round16_v1",
+  "mc_manifest_sha256": "3fb2f5cb19df1561146526ce4b3ab8c831e6e7ddd6273acacf91df0a0389fbad",
+  "r17_data_root": "$TRAIN_ROOT/data/glove_mixed_round17_v1",
+  "r17_manifest_sha256": "4624165805d28011256d2e1ecbe24d3c7e7e9a3fc89abbf9cdd57f12cdb98745",
+  "coco_parent": "$TRAIN_ROOT/cache/torch/hub/checkpoints/fasterrcnn_resnet50_fpn_v2_coco-dd69338a.pth",
+  "coco_parent_sha256": "dd69338a24b8d7381807e247652bdc356325bcbaf1cd3e092e00e0a1a58706bf",
+  "source_archive_path": "$TRAIN_ROOT/tmp/hand_r19_source_v2.zip.partial",
+  "architecture": "Torchvision0.16.2 FasterR-CNN R50-FPN-v2;COCO features;new2class predictor",
+  "frozen_layers": "backbone.body parameters and eval BatchNorm",
+  "trainable_layers": "FPN/RPN/box convFC head/new class2 predictor",
+  "class_labels": {
+    "0": "background",
+    "1": "hand"
+  },
+  "batch_size": 2,
+  "min_size": 640,
+  "max_size": 896,
+  "score_threshold": 0.5,
+  "NMS_IoU": 0.5,
+  "max_hands": 6,
+  "lr": 0.005,
+  "optimizer": "SGD momentum.9 weightdecay.0001",
+  "steps": 1280,
+  "short_steps": 16,
+  "validate_every": 160,
+  "save_every": 320,
+  "public_mixture": {
+    "MC_geometric_box": 0.5,
+    "FreiHAND_geometric_box": 0.25,
+    "HaGRID_author_box": 0.25
+  },
+  "field_mix_intervention": "replace slot1 on odd steps with existing field frame;25percent total samples;public_only leaves public query unchanged",
+  "augmentation": "same stateless sample/flip/brightness/contrast/color seeds;perstep common Torch/CUDA sampler seed",
+  "primary_metric": "fixed_final1280 old_AI_field_known_box_recall50;reportmatched/16 andunmatchedcountnotverifiedFP",
+  "retention_metric": "64HaGRIDdevelopmentimages80authorboxesF1at.5;notbusinessacceptance",
+  "primary_branch_selection": "prefer field_mix only if final_knownboxrecall50 improves and author_public_F1 declines no more than .05;otherwise retain baseline/mark inconclusive",
+  "checkpoint_selection": "primary=final1280;auxbest=max publicHaGRIDauthorF1,tieearlier;noheldoutselection",
+  "GT_scope": "HaGRIDauthorboxes;MC/FreiHANDweakjointenvelopes;oldfieldAIcoarse;noindependenttest;no21pointGTfromHaGRID",
+  "arms": {
+    "public_only": {
+      "physical_gpu": 1
+    },
+    "field_mix": {
+      "physical_gpu": 2
+    }
+  },
+  "framework_memory_cap_bytes": 8589934592,
+  "atomic_checkpoint_upper_bound_bytes": 209715200,
+  "expected_added_storage_upper_bound_bytes": 1677721600,
+  "required_growth_margin_bytes": 2147483648,
+  "co_resident_baselines": {
+    "1": {
+      "2565183": {
+        "start_token": "117210637",
+        "command_sha256": "f27ae8e9e11a42439d50ced811d2ede507a8ad99004132ad92e6d223b8236493",
+        "memory_upper_MiB": 1470
+      }
+    },
+    "2": {
+      "35482": {
+        "start_token": "12701",
+        "command_sha256": "15c9e0ce86aa9b124e292c9a79649d80682af733ae54dcb775454e0abc960398",
+        "memory_upper_MiB": 25386
+      },
+      "42314": {
+        "start_token": "15482",
+        "command_sha256": "62046f1e9aa4955ce4c7e79301b11bfd4339cdb7349a992f9201882c4e8dc1b2",
+        "memory_upper_MiB": 1366
+      },
+      "42322": {
+        "start_token": "15484",
+        "command_sha256": "06af165a89f64c3dbd7d56905a5f77d0137f6b58d27831752c843eaaed1c5d90",
+        "memory_upper_MiB": 1910
+      }
+    }
+  },
+  "resource_baseline_observation_UTC": "2026-11-14T18:10:20.869986+00:00",
+  "new_manual_field_annotation": false,
+  "T19_02_remains_user_deferred": true,
+  "business_completion_claim": false,
+  "prelaunch_source_revision": 2
+}

@@ -1,0 +1,43 @@
+# ============================================================
+# 动作标签契约全集（单一事实源 / Label Catalog）
+# ============================================================
+# 训练 / 推理 / 业务三端标签信息的唯一权威：
+#   - 训练侧：label_dirs 键（契约编码）合法性校验、训练标签整数 = 本表顺序索引
+#   - 推理侧：模型包 label_map.id 集合校验（须为本表子集）、label_map 缺省展示兜底
+#   - 业务侧：jl_action_type 字典、jc_sop_item.action_type 引用本表编码
+#
+# 字段说明：
+#   id             动作编码（唯一权威，大写下划线标识符；上下游契约均用此编码）
+#   name_zh        中文名（展示用，模型包 label_map.name / 业务字典均取此）
+#   color          HEX 颜色（标注帧 / 前端展示；与模型包 label_map.color 一致）
+#   default_enabled  action_model.enabled_actions 为空时的默认动作开关（IDLE 恒启用）
+#
+# ⚠️ 硬性约定：
+#   1. IDLE（空闲/背景类）必须存在且为第一个标签（索引恒为 0）——
+#      推理前置规则与后处理兜底按索引 0 输出 IDLE
+#   2. id 唯一、非空、匹配 ^[A-Z][A-Z0-9_]*$
+#   3. 变更标签（增删/改名）后：训练数据须重新提取特征缓存（标签索引语义变化），
+#      业务侧 jl_action_type 字典须同步
+#   4. 历史模型包 id（CLEAN_WATER/CLEAN_GAS/PLACE_BACK）兼容映射在代码
+#      common/label_catalog.py:LEGACY_ID_MAP 中，不属于本表
+#
+# 路径（common/label_catalog.py）：固定为 config/label_catalog.yaml（相对工程根），
+#   三端统一经 common/label_catalog.py 访问本文件，保证同一来源。
+# ============================================================
+
+version: "1.0.0"
+
+labels:
+# default_enabled 为预留字段：加载器暂未消费，动作启用以 service.yaml
+# action_model.enabled_actions 显式管理为准
+  - {id: IDLE,           name_zh: 空闲,              color: "#909399", default_enabled: true}
+  - {id: SHELF_TAKE,     name_zh: 货架拿取,          color: "#909399", default_enabled: true}
+  - {id: MOVING,         name_zh: 单根胶管拿放/移动, color: "#909399", default_enabled: true}
+  - {id: ARRANGING,      name_zh: 铺开,              color: "#409EFF", default_enabled: true}
+  - {id: WATER,          name_zh: 水洗,              color: "#67C23A", default_enabled: true}
+  - {id: SURFACE_CLEAN,  name_zh: 外侧清理,          color: "#E6A23C", default_enabled: true}
+  - {id: GAS,            name_zh: 气洗,              color: "#F56C6C", default_enabled: true}
+  - {id: SHELF_PUT,      name_zh: 货架放回,          color: "#909399", default_enabled: true}
+  # Appended only: existing checkpoint indices remain unchanged.
+  - {id: CLEANING_OPERATION, name_zh: 清洗作业, color: "#67C23A", default_enabled: false}
+  - {id: OTHER_OPERATION, name_zh: 其他操作, color: "#409EFF", default_enabled: false}

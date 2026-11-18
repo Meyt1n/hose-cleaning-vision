@@ -1,0 +1,67 @@
+{
+  "round": 18,
+  "intent_id": "glove_occlusion_round18_parallel_v1",
+  "hypothesis": "expandedvisiblefieldsupervision+samefeatureprotection;onlycompareopaqueocclusioninputaugmentation35percentversusnone",
+  "architecture": "CSPNeXt-M+RTMCC-GAU+SimCC21;stage4andheadtrainable,earlierfeaturesandallBNrunningbuffersfixed",
+  "initialization": "R17selectedtail_stagebest626deltaoverofficialHand5;newAdamWforeacharm;notresumeofR17optimizer",
+  "optimizer": "AdamW4nameddecay/normbiasgroups;head1e-5/stage4one-tenth1e-6;warmup200then10percentcosineend;FP32clip5",
+  "steps_per_arm": 3200,
+  "total_new_optimizer_steps": 6400,
+  "short16_included_once_each": true,
+  "batch_mixture": [
+    16,
+    12,
+    4
+  ],
+  "data_splits": {
+    "development_field_AI": {
+      "images": 4,
+      "known_joints": 15
+    },
+    "development_freihand_retention": {
+      "images": 256,
+      "known_joints": 5376
+    },
+    "development_mc_new115": {
+      "images": 128,
+      "known_joints": 2688
+    },
+    "development_mc_old113": {
+      "images": 64,
+      "known_joints": 1344
+    },
+    "development_new_field_AI": {
+      "images": 6,
+      "known_joints": 19
+    },
+    "development_synthetic_stress": {
+      "images": 64,
+      "known_joints": 1344
+    },
+    "train_field_AI": {
+      "images": 19,
+      "known_joints": 63
+    },
+    "train_freihand": {
+      "images": 1024,
+      "known_joints": 21504
+    },
+    "train_mc": {
+      "images": 5000,
+      "known_joints": 105000
+    }
+  },
+  "primary_metric": "equalmeanofoldAI15tipdevNMEandnewAI19tipdevNME;coarsevisiblepointsnotgestureaccuracy",
+  "selection": "step0R17parentiseligible;every400stepsandfixedlast3200;minprimaryNMEwhenMCmacro/FreiPCKretention>=baseline-.01,oldAIdevPCK>=baseline-1/15,unlabelededge<=baseline+2;tie1e-6preferbase;newDLV03heldoutafterselectiononly",
+  "stress": "64fixedpublicdevelopmentocclusionvariants,reportcovered/not-coveredprojectedjointsseparately;notselectionorrealocclusionidentityGT",
+  "one_changed_factor": "35percentproceduralopaqueinputocclusionusingindependentRNG;IDs/affine/colors/blur/sampling/model/loss/LRidentical",
+  "occlusion_semantics": "retainknownsourceGTthroughartificialocclusion;realunknownweightsremain0;doesnotcreatehiddenfieldanatomytruth",
+  "withheld_newvideo": "DLV03eightROI/fourAI-labeledROI17visiblepoints;notuploaded;onecamera/fewworkers;notindependenthumanacceptance",
+  "licenses": {
+    "MC": "CCBY4.0",
+    "FreiHAND": "researchonlynoncommercial",
+    "field": "userprivateauthorized"
+  },
+  "server_only": true,
+  "no_RGB_action_or_cleaning_count_training": true
+}

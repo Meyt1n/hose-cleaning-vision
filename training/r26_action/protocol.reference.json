@@ -1,0 +1,40 @@
+{
+  "intent": "local_action_boundary_round26_parallel_v1",
+  "hypothesis": "operation boundary auxiliary loss reduces spurious action transitions and improves visible operation transitions without degrading action recognition",
+  "arms": {
+    "action_only": {
+      "physical_gpu": 1,
+      "boundary_loss_weight": 0
+    },
+    "boundary_aux": {
+      "physical_gpu": 2,
+      "boundary_loss_weight": 0.25
+    }
+  },
+  "source_sha256": "17c48ec0b93a2e3abcda62692baf4696363566c121e485d16dd58c4e2b22e920",
+  "data_split_sha256": "575f41176c011a478ba243f26e2f22fad8fe3ef663bd2ad35edbf75ced5d01f9",
+  "fine_annotation_sha256": "5b1edc0f7abfeaee250a5f18e1a32bc90ecafb1b1223c2a2c4aceea0b0d445d0",
+  "source_video_sha256": "0f927bb7109bae79e411f67d190a6e27ad8b7c3c24074bf544695b144e32ca2d",
+  "config_sha256": "5b31902818ae086536abeaf15b617f8ccc8144244e5e22854e0b74c417b5e1a5",
+  "parent_sha256": "593503f2d431391746562dd1a586f81197b5fce43c1503222ae25a0a7514a12b",
+  "initial_sha256": "a554f3113289872dd3fd32c9c06602c6dda6317425224b6b9b2c0be0276dc6e3",
+  "scope": "same FULL01 150..450s; train150..397, guard397..400, blocked development400..450; no independent video acceptance",
+  "primary": "blocked50second development action-transition boundary F1 at1s interval tolerance; actionF1 and unknown coverage guardrails; learned boundary head and old6regression separately",
+  "working_points": {
+    "action_p": 0.5,
+    "accepted_negative": 0.2,
+    "accepted_positive": 0.8,
+    "current_hand_required": true,
+    "boundary_p": 0.5,
+    "boundary_causal_refractory_seconds": 0.5,
+    "boundary_tolerance_seconds": 1,
+    "action_duration_seconds": 3,
+    "max_gap_seconds": 0.12
+  },
+  "planned_steps_each": 800,
+  "checkpoint_selection": "fixed final800; no threshold or best-epoch search",
+  "single_changed_factor": "auxiliary boundary loss weight0 vs0.25; same architecture data queryRNG init schedule",
+  "actual_contact_supervision": false,
+  "source_exposure": "prior R25 short-clip parent overlap unresolved; old6 opened; all scores diagnostic/development",
+  "new_optimizer_steps": 0
+}
